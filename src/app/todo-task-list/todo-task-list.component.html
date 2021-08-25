@@ -1,0 +1,18 @@
+<div>
+  <div *ngIf="todoTaskList.length == 0; then noTasksTodoBlock; else someTasksTodoBlock"></div>
+
+  <ng-template #noTasksTodoBlock>
+    Nothing to do, have some fun!
+  </ng-template>
+  <ng-template #someTasksTodoBlock>
+    <ul>
+      <li *ngFor="let task of todoTaskList; let i = index">
+        {{task.name}}
+        <button (click)="removeTask(i)">Remove this task</button>
+        <button (click)="doTask(i)">Task Done</button>
+      </li>
+    </ul>
+  </ng-template>
+
+
+</div>
