@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MyTask, TasksService } from 'services/tasks.service';
+import { MyTask } from 'models/myTask';
+import { TasksService } from 'services/tasks.service';
 
 @Component({
   selector: 'app-todo-task-list',

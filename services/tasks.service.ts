@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MyTask } from 'models/myTask';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
@@ -11,7 +12,7 @@ export class TasksService {
   private doneListObserver = new BehaviorSubject<Array<MyTask>>(this.doneTaskList);
 
   addNewTask(taskName: string){
-    this.todoTaskList.push(new MyTask(taskName));
+    this.todoTaskList.push({name: taskName, created: new Date()});
     this.todoListObserver.next(this.todoTaskList);
   }
 
@@ -22,6 +23,7 @@ export class TasksService {
 
   doTask(index: number){
     let removed = this.removeTask(index);
+    removed.completed = new Date();
     this.doneTaskList.push(removed);
     this.doneListObserver.next(this.doneTaskList);
   }
@@ -35,6 +37,4 @@ export class TasksService {
 
 }
 
-export class MyTask{
-  constructor(public name: string){};
-}
+

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TasksService, MyTask } from 'services/tasks.service';
+import { MyTask } from 'models/myTask';
+import { TasksService } from 'services/tasks.service';
 @Component({
   selector: 'app-done-task-list',
   templateUrl: './done-task-list.component.html',
