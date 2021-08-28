@@ -1,33 +1,26 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Task } from '../app.component';
+import { Component } from '@angular/core';
+import { MyTask, TasksService } from 'services/tasks.service';
 
 @Component({
   selector: 'app-todo-task-list',
   templateUrl: './todo-task-list.component.html',
   styleUrls: ['./todo-task-list.component.css']
 })
-export class TodoTaskListComponent implements OnInit {
 
-  @Input()
-  todoTaskList: Task[] = [];
+export class TodoTaskListComponent {
+    todoTaskList: Array<MyTask> = [];
 
-  @Output()
-  doneTaskEmitter = new EventEmitter<number>();
-
-  @Output()
-  removeTaskEmitter = new EventEmitter<number>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+    constructor(private tasksService: TasksService) { 
+        this.tasksService.getTodoListObserver().subscribe((tasks: Array<MyTask>) => {
+          this.todoTaskList = tasks;
+        });
+    }
 
   doTask(id: number){
-    this.doneTaskEmitter.emit(id);
+    this.tasksService.doTask(id);
   }
 
   removeTask(id: number){
-    this.removeTaskEmitter.emit(id);
+    this.tasksService.removeTask(id);
   }
-
 }

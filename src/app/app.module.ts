@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { TasksService } from 'services/tasks.service';
 import { AddTaskComponent } from './add-task/add-task.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +21,7 @@ import { TodoTaskListComponent } from './todo-task-list/todo-task-list.component
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
